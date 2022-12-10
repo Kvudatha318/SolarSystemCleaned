@@ -34,7 +34,7 @@ class Simulation extends JPanel implements Runnable {
    private int solarCounter = 0;   // must start at zero
    private int screenMid ; // mid-screen location 
    
-   private PlanetLoader planetLoader = new  PlanetLoader();  
+   private static final PlanetLoader planetLoader = new  PlanetLoader();  
    private SolarSystem solarSystem  ;
 
    public Simulation() {  
@@ -101,7 +101,7 @@ private void NextSolarSystemRun() {
 	 */
 	private void initializeGlobalVariables() {
 		List<Map<String, Object>> readPlanetConfig = planetLoader.ReadPlanetConfig("classes/variableconfig.csv");
-		if (readPlanetConfig != null && readPlanetConfig.size() > 0) {
+		if (readPlanetConfig != null && !readPlanetConfig.isEmpty()) {
 			Map<String, Object> configMap = readPlanetConfig.get(0);
 			this.screenSize = Integer.valueOf(configMap.get("screenSize") + "");
 			this.frameDelay = Integer.valueOf(configMap.get("frameDelay") + "");
