@@ -1,25 +1,25 @@
 package sim.solar.planet;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.io.FileReader;  
 import java.io.IOException;  
-import java.util.HashMap; 
 import com.opencsv.CSVReader; 
 
 public class PlanetLoader {
 
-    private final String planetConfigFile = "classes/solarconfig.csv";
+    private final static String planetConfigFile = "classes/solarconfig.csv";
     
     
     
     public List<PlanetInterface> Produce(int row) {
         
-        List<PlanetInterface> planetList = new ArrayList<PlanetInterface>();
+        List<PlanetInterface> planetList = new ArrayList<>();
         
-        List<Map<String, Object>> readPlanetConfig = this.ReadPlanetConfig(this.planetConfigFile);
+        List<Map<String, Object>> readPlanetConfig = this.ReadPlanetConfig(planetConfigFile);
         
         Map<String, Object> solarConfigValues = readPlanetConfig.get(row);
         
@@ -49,6 +49,7 @@ public class PlanetLoader {
             try{
             planetList.add(new Planet (angle, orbit, increment, planetsize, red, green, blue));
             }catch (IllegalArgumentException e) {
+            	e.printStackTrace();
 			}
          }
          
@@ -77,7 +78,7 @@ public  List<Map<String, Object>> ReadPlanetConfig(String fileName)  {
 
          while ((nextLine = reader.readNext()) != null) {
         	 int columnIndex=0;
-        	 Map<String,Object> configDataMap=new HashMap<>();
+        	 Map<String,Object> configDataMap=new ConcurrentHashMap<>();
             for ( String token : nextLine)  {  
             	configDataMap.put(columns.get(columnIndex), token);
             	columnIndex++;
@@ -87,7 +88,9 @@ public  List<Map<String, Object>> ReadPlanetConfig(String fileName)  {
          reader.close(); 
       }  
 		catch (FileNotFoundException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return configDataList;  
    } 
