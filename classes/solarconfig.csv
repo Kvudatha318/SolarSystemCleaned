@@ -1,0 +1,5 @@
+numplanets,orbit,increment,angleinc,planetsize,redbase,greenbase,bluebase,redinc,greeninc,blueinc
+90,240,1,5,10,240,240,60,-2,-2,2
+80,200,1,5,15,60,240,60,0,-2,1
+70,150,1,5,5,6,240,240,0,-2,-1
+50,220,1,10,25,255,60,60,-3,3,2
