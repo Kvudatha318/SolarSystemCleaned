@@ -1,8 +1,6 @@
 package sim.solar; 
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
 import java.util.List;
 import sim.solar.planet.PlanetInterface;
 import sim.solar.planet.PlanetView; 
